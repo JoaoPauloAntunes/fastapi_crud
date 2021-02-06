@@ -7,27 +7,35 @@ from ..database import schemas
 user_router = APIRouter()
 
 
+fake_users_db = [
+    {
+        "id": 1,
+        "email": "joao@gmail.com",
+        "is_active": True,
+        "items": []
+    },
+    {
+        "id": 2,
+        "email": "debora@gmail.com",
+        "is_active": True,
+        "items": []
+    },
+    {
+        "id": 3,
+        "email": "laise@gmail.com",
+        "is_active": False,
+        "items": []
+    }
+]
+
 @user_router.get("/")
 def read_users(skip: int = 0, limit: int = 100):
     print(">> read_users")
+    print(skip)
+    print(limit)
     return {
         "status": True,
-        "data": {
-            "users": [
-                {
-                    "id": 1,
-                    "email": "joao@gmail.com",
-                    "is_active": True,
-                    "items": []
-                },
-                {
-                    "id": 2,
-                    "email": "debora@gmail.com",
-                    "is_active": True,
-                    "items": []
-                }
-            ]
-        }
+        "data": fake_users_db[skip : skip + limit]
     }
 
 
@@ -47,20 +55,10 @@ def read_user(email: str):
     } """
 
 
-@user_router.post("/test/")
+@user_router.post("/")
 def create_user(user: schemas.UserCreate):
     print(">> create_user")
-    return {
-        "status": True,
-        "data": {
-            "user": {
-                "id": 1,
-                "email": "joao@gmail.com",
-                "is_active": True,
-                "items": []
-            }
-        }
-    }
+    return user
 
 
 """ @user_router.put("/")
