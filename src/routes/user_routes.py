@@ -28,8 +28,24 @@ fake_users_db = [
         "email": "laise@gmail.com",
         "is_active": False,
         "items": []
+    },
+    {
+        "id": 4,
+        "name": "Isabela",
+        "email": "isabela@gmail.com",
+        "is_active": True,
+        "items": []
     }
 ]
+
+
+# The data is received in String JSON format, then it is converted to an object of the "UserCreate" class
+@user_router.post("/")
+def create_user(user: schemas.UserCreate):
+    print(">> create_user")
+    return user
+
+
 
 @user_router.get("/")                               # route; path params
 def read_users(skip: int = 0, limit: int = 100):    # query params
@@ -60,32 +76,46 @@ def read_user(email: str):
     }
 
 
-# The data is received in String JSON format, then it is converted to an object of the "UserCreate" class
-@user_router.post("/")
-def create_user(user: schemas.UserCreate):
-    print(">> create_user")
-    return user
 
+@user_router.put("/{email}")
+def update_user(email: str, new_user: schemas.User):
+    print(">> read_user")
 
-""" @user_router.put("/")
-def update_user(user: schemas.UserCreate):
-    print(">> update_user")
+    message = "user not found"
+    status = False
+    for index, user in enumerate(fake_users_db):
+        if user["email"] == email:
+            fake_users_db[index] = new_user.dict()
+            message = "user changed"
+            status = True
+            break
+        
     return {
-        "status": True,
+        "status": status,
         "data": {
-            "user": {
-                "id": 1,
-                "email": "joao@gmail.com",
-                "is_active": True,
-                "items": []
-            }
+            "message": message,
+            "users": fake_users_db
         }
-    } """
+    }
 
-""" @user_router.delete("/")
-def delete_user(email: str):
-    print(">> delete_user")
+
+@user_router.delete("/{email}")
+def remove_user(email: str):
+    print(">> remove_user")
+
+    message = "user not found"
+    status = False
+    for index, user in enumerate(fake_users_db):
+        if user["email"] == email:
+            fake_users_db.pop(index)
+            message = "user removed"
+            status = True
+            break
+
     return {
-        "status": True,
-        "data": {}
-    } """
+        "status": status,
+        "data": {
+            "message": message,
+            "users": fake_users_db
+        }
+    }

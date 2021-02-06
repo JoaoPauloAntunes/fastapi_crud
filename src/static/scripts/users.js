@@ -1,5 +1,6 @@
 $(function (event) {
     const user = {
+        "name": "João Paulo",
         "email": "joao@gmail.com",
         "password": "joao_pwd"
     };
@@ -106,24 +107,49 @@ $(function (event) {
     $(".btn-update").click(function (event) {
         console.log("UPDATE");
 
-        $.ajax({
-            url: `${userRoute}/`,
-            method: "POST",
-            data: {
-                "email": "test@gmail.com",
-                "password": "test_pass"
-            }
-        }).done(function (response) {
+        const email = "laise@gmail.com";
+        const new_user = {
+            "id": 3,
+            "name": "Carol",
+            "email": "carol@gmail.com",
+            "is_active": true,
+            "items": []
+        };
+
+        // work!
+        $.put(`/users/${email}`, JSON.stringify(new_user), function (response) {
             console.log(response);
-            console.log(response.data);
-            console.log(response.data.user);
-            console.log(response.data.user.email);
         });
     });
 
     $(".btn-remove").click(function (event) {
         console.log("REMOVE");
 
+        const email = "laise@gmail.com";
+        // const email = "debora@gmail.com";
 
+        // work!
+        $.delete(`/users/${email}`, false, function (response) {
+            console.log(response);
+        });
     });
+});
+
+// JQuery extension for using the put and delete methods
+jQuery.each( [ "put", "delete" ], function( i, method ) {
+    jQuery[ method ] = function( url, data, callback, type ) {
+        if ( jQuery.isFunction( data ) ) {
+            type = type || callback;
+            callback = data;
+            data = undefined;
+        }
+
+        return jQuery.ajax({
+            url: url,
+            type: method,
+            dataType: type,
+            data: data,
+            success: callback
+        });
+    };
 });

@@ -20,6 +20,7 @@ class Item(ItemBase):
 
 
 class UserBase(BaseModel):
+    name: str
     email: str
 
 
