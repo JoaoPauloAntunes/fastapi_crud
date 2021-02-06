@@ -7,10 +7,20 @@ $(function (event) {
     $(".btn-read").click(function (event) {
         console.log("READ");
 
+        //************************************************************************************* */
+        // READ with path params
+        const email = "debora@gmail.com";
 
+        $.get(`/users/${email}`).done(function (data) {
+            console.log(data);
+        });
+
+
+        return;
+        //************************************************************************************* */
+        // READ with query params
         const skip = 1;
         const limit = 2;
-
 
         // work!
         /* $.get(`/users/`).done(function (data) {
@@ -66,12 +76,13 @@ $(function (event) {
 
 
         // work!
-        /* $.post("/users/", JSON.stringify(user)).done(function (data) {
+        // JSON.stringify() is required! The data must be sent in String JSON format!
+        $.post("/users/", JSON.stringify(user)).done(function (data) {
             console.log(data);
             console.log(data.email);
-        }); */
+        });
 
-        
+
         ///////////////////////////////////////////////////////////////////////////////
         // Using AJAX
 
