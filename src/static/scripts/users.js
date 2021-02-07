@@ -12,26 +12,47 @@ $(function (event) {
         // READ with path params
         const email = "debora@gmail.com";
 
+        // work!
+        /* fetch(`/users/${email}`, {
+            method: 'GET'
+        }).then((response) => {
+            return response.json().then(function (response) {
+                console.log(response);
+            });
+        }); */
+
+        // work!
         $.get(`/users/${email}`).done(function (data) {
             console.log(data);
         });
 
 
-        return;
         //************************************************************************************* */
         // READ with query params
         const skip = 1;
         const limit = 2;
 
         // work!
+        // doesn't work by passing data through query params
+        /* fetch(`/users/`, {
+            method: 'GET'
+        }).then((response) => {
+            return response.json().then(function (response) {
+                console.log(response);
+            });
+        }); */
+
+        // work!
         /* $.get(`/users/`).done(function (data) {
             console.log(data);
         }); */
 
+
         // work!
-        $.get(`/users/`, { "skip": skip, "limit": limit }).done(function (data) {
+        /* $.get(`/users/`, { "skip": skip, "limit": limit }).done(function (data) {
             console.log(data);
-        });
+        }); */
+        
 
         // work!
         /* $.get(`/users/`, { "skip": skip }).done(function (data) {
@@ -75,13 +96,22 @@ $(function (event) {
     $(".btn-create").click(function (event) {
         console.log("CREATE");
 
+        // work!
+        /* fetch("/users/", {
+            method: 'POST',
+            body: JSON.stringify(user),
+        }).then((response) => {
+            return response.json().then(function (response) {
+                console.log(response);
+            });
+        }); */
 
         // work!
         // JSON.stringify() is required! The data must be sent in String JSON format!
-        $.post("/users/", JSON.stringify(user)).done(function (data) {
+        /* $.post("/users/", JSON.stringify(user)).done(function (data) {
             console.log(data);
             console.log(data.email);
-        });
+        }); */
 
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -116,6 +146,16 @@ $(function (event) {
             "items": []
         };
 
+        // doesn't work! Error: "Method Not Allowed"
+        /* fetch(`/users/`, {
+            method: 'PUT',
+            body: JSON.stringify(new_user)
+        }).then((response) => {
+            return response.json().then(function (response) {
+                console.log(response);
+            });
+        }); */
+
         // work!
         $.put(`/users/${email}`, JSON.stringify(new_user), function (response) {
             console.log(response);
@@ -135,10 +175,20 @@ $(function (event) {
     });
 
     $("form").submit(function (event) {
-        /* event.preventDefault();
+        event.preventDefault();
 
-        const profilePicture = document.getElementById("profile_picture").files[0];
-        console.log(profilePicture); */
+        /* const profilePicture = document.getElementById("profile_picture").files[0];
+        console.log(profilePicture);
+
+        var formData = new FormData();
+        formData.append('file', profilePicture);
+
+        fetch("/users/profile_picture", {
+            method: 'POST',
+            body: formData,
+        }).then((response) => {
+            console.log(response)
+        }); */
 
         /* $.ajax({
             url: '/users/profile_picture',                  // request route here
