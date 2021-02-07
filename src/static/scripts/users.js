@@ -133,6 +133,10 @@ $(function (event) {
             console.log(response);
         });
     });
+
+    /* $(".btn-send-profile-picture").click(function (event) {
+
+    }) */
 });
 
 // JQuery extension for using the put and delete methods

@@ -11,10 +11,35 @@
 {% endblock styles %}
 
 {% block content %}
-<button type="button" class="btn btn-primary btn-read">Visualizar</button>
-<button type="button" class="btn btn-success btn-create">Adicionar</button>
-<button type="button" class="btn btn-warning btn-update">Editar</button>
-<button type="button" class="btn btn-danger btn-delete">Remover</button>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-primary btn-read">Visualizar</button>
+        </div>
+
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-success btn-create">Adicionar</button>
+        </div>
+
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-warning btn-update">Editar</button>
+        </div>
+
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-danger btn-delete">Remover</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 mt-3">
+            <form method="POST" action="/users/profile_picture" enctype="multipart/form-data">
+                <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
+                <button type="submit" class="btn btn-success btn-send-profile-picture">Enviar foto de perfil</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
 
 {% block scripts %}

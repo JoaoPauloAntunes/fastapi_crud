@@ -1,5 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, File, UploadFile
 from fastapi.templating import Jinja2Templates
+from shutil import copyfileobj
 
 from ..database import schemas
 
@@ -119,3 +120,25 @@ def remove_user(email: str):
             "users": fake_users_db
         }
     }
+
+
+@user_router.post('/profile_picture')
+def receive_profile_picture(profile_picture: UploadFile = File(...)):
+    file_path = f"data/{profile_picture.filename}"
+
+    try:
+        with open(file_path, 'wb') as create_file:
+            copyfileobj(profile_picture.file, create_file)
+            is_created = True
+    except:
+        is_created = False
+    finally:
+        return {
+            "status": is_created,
+            "data": {
+                "message": "profile picture uploaded" if is_created else "profile picture don't uploaded",
+                "file_name": profile_picture.filename,
+                "content_type": profile_picture.content_type,
+                "file_path": file_path,
+            }
+        }

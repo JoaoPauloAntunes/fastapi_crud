@@ -9,6 +9,7 @@ from .routes.test_routes import test_router
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory='src/static'), name="static")
+app.mount("/data", StaticFiles(directory="data"), name="data")
 
 @app.get("/")
 def root():
