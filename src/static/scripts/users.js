@@ -122,8 +122,8 @@ $(function (event) {
         });
     });
 
-    $(".btn-remove").click(function (event) {
-        console.log("REMOVE");
+    $(".btn-delete").click(function (event) {
+        console.log("DELETE");
 
         const email = "laise@gmail.com";
         // const email = "debora@gmail.com";
