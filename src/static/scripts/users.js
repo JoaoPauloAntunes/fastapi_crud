@@ -174,9 +174,7 @@ $(function (event) {
         });
     });
 
-    $("form").submit(function (event) {
-        event.preventDefault();
-
+    $("#btn_send_profile_picture").click(function (event) {
         const profilePicture = document.getElementById("profile_picture").files[0];
         console.log(profilePicture);
 
