@@ -135,10 +135,10 @@ $(function (event) {
     });
 
     $("form").submit(function (event) {
-        event.preventDefault();
+        /* event.preventDefault();
 
         const profilePicture = document.getElementById("profile_picture").files[0];
-        console.log(profilePicture);
+        console.log(profilePicture); */
 
         /* $.ajax({
             url: '/users/profile_picture',                  // request route here
@@ -168,10 +168,10 @@ $(function (event) {
         reader.readAsDataURL(profilePicture); */
 
 
-        console.log(profilePicture.name);
+        /* console.log(profilePicture.name);
         console.log(profilePicture.size);
         console.log(profilePicture.type);
-        
+
         var formData = new FormData();
         formData.append('file', profilePicture);
 
@@ -189,7 +189,7 @@ $(function (event) {
         xhr.setRequestHeader("X-File-Type", profilePicture.type);
 
         // Send
-        xhr.send(formData);
+        xhr.send(formData); */
 
         /* var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
