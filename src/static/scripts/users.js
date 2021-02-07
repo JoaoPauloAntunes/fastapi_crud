@@ -134,9 +134,116 @@ $(function (event) {
         });
     });
 
-    /* $(".btn-send-profile-picture").click(function (event) {
+    $("form").submit(function (event) {
+        event.preventDefault();
 
-    }) */
+        const profilePicture = document.getElementById("profile_picture").files[0];
+        console.log(profilePicture);
+
+        /* $.ajax({
+            url: '/users/profile_picture',                  // request route here
+            method: 'POST',                                 // request HTTP method ("POST", "GET", "PUT" e "DELETE"?)
+            contentType: 'application/json',                // request content type
+            data: JSON.stringify(profilePicture),           // request data
+            dataType: 'json',                               // response data type
+            success: function (data, textStatus, jqXHR) {   // function that is called if the request succeeds
+                console.log(data);
+                console.log(textStatus);
+                console.log(jqXHR);
+            },
+        }); */
+
+       /*  $.post("/users/profile_picture", JSON.stringify(profilePicture)).done(function (data) {
+            console.log(data);
+        }); */
+ 
+
+        /*var reader = new FileReader();
+        reader.onloadend = function ()
+        {
+            dataToBeSent = reader.result.split("base64,")[1];
+            console.log(dataToBeSent);
+            $.post("/users/profile_picture", { "data" : dataToBeSent });
+        }
+        reader.readAsDataURL(profilePicture); */
+
+
+        console.log(profilePicture.name);
+        console.log(profilePicture.size);
+        console.log(profilePicture.type);
+        
+        var formData = new FormData();
+        formData.append('file', profilePicture);
+
+        var xhr = new XMLHttpRequest();
+
+        // Open
+        xhr.open("POST", "/users/profile_picture");
+
+        // Set headers
+        xhr.setRequestHeader("Cache-Control", "no-cache");
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.setRequestHeader("Content-Type", "multipart/form-data");
+        xhr.setRequestHeader("X-File-Name", profilePicture.name);
+        xhr.setRequestHeader("X-File-Size", profilePicture.size);
+        xhr.setRequestHeader("X-File-Type", profilePicture.type);
+
+        // Send
+        xhr.send(formData);
+
+        /* var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.status == 200) {
+                console.log("ok");
+            }
+        }
+        xhr.open("POST", "/users/profile_picture", true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.send(JSON.stringify(profilePicture)); */
+
+        /* formData = new FormData();
+        formData.append('file', profilePicture);
+
+        $.ajax({
+            url: "/users/profile_picture", // Url to which the request is send
+                type: "POST", // Type of request to be send, called as method
+                data: formData, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                processData:false, // To send DOMDocument or non processed data file it is set to false
+                contentType: false, // The content type used when sending data to the server.
+                cache: false, // To unable request pages to be cached
+                success: function(data)   // A function to be called if request succeeds
+                {
+                    console.log(data);
+                }
+        }); */
+
+        /* var formData = new FormData();
+        formData.append('file', profilePicture, profilePicture.name);
+        console.log(formData);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/users/profile_picture", true);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                console.log("Profile picture uploaded!");
+            } else {
+                console.log("Profile picture don't uploaded!");
+            }
+        };
+        xhr.send(formData); */
+
+        /* $.ajax({
+            url: "/users/profile_picture",
+            type: "POST",
+            data: formData,
+            dataType: 'json',
+            processData: false, // tell jQuery not to process the data
+            contentType: false, // tell jQuery not to set contentType
+            success: function (response) {
+                console.log(response);
+            }
+        }); */
+    })
 });
 
 // JQuery extension for using the put and delete methods
