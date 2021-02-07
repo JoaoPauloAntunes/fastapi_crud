@@ -177,18 +177,21 @@ $(function (event) {
     $("form").submit(function (event) {
         event.preventDefault();
 
-        /* const profilePicture = document.getElementById("profile_picture").files[0];
+        const profilePicture = document.getElementById("profile_picture").files[0];
         console.log(profilePicture);
 
         var formData = new FormData();
-        formData.append('file', profilePicture);
+        formData.append('profile_picture', profilePicture);
 
+        // work!
         fetch("/users/profile_picture", {
             method: 'POST',
             body: formData,
         }).then((response) => {
-            console.log(response)
-        }); */
+            return response.json().then(function (data) {
+                console.log(data);
+            })
+        });
 
         /* $.ajax({
             url: '/users/profile_picture',                  // request route here
