@@ -234,24 +234,30 @@ $(function (event) {
     });
 
     $(".btn-receive-profile-photo").click(function (event) {
-        console.log("RECEIVE profile photo");
-        const profilePhotoName = "Screenshot from 2021-02-02 11-27-59.png";
+        console.log("RECEIVE PROFILE PHOTO");
+        const profilePhotoName = $("#profile_photo_name").val();
     
         fetch(`/users/profile_photo/${profilePhotoName}`).then(function (response) {
             return response.blob().then(function (blob) {
+                if (blob.size <= 21) {
+                    alert('Nome da foto de perfil de inválido!');
+                    return false;
+                }
+    
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 
                 a.style.display = 'none';
                 a.href = url;
                 a.download = profilePhotoName;            // the filename you want
-
+    
                 document.body.appendChild(a);
                 a.click();
-
+    
                 window.URL.revokeObjectURL(url);
             });
-        }).catch(() => alert('Failed to download profile photo'));
+        })
+        .catch(() => alert('Falha ao fazer download da foto!'));
     });
 });
 

@@ -32,14 +32,18 @@
 
     <div class="row">
         <div class="col-sm-12 mt-3">
-            <input type="file" name="profile_photo" id="profile_photo" accept="image/*">
+            <input type="file" name="profile_photo" class="custom-file-input" id="profile_photo" accept="image/*">
             <button type="button" id="btn_send_profile_photo" class="btn btn-success">Enviar foto de perfil</button>
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-12 mt-3">
-            <button type="button" class="btn btn-primary btn-receive-profile-photo">Receber foto de perfil</button>
+            <div class="form-group">
+                <label for="profile_photo_name">Nome da foto de perfil: </label>
+                <input type="text" name="profile_photo_name" id="profile_photo_name" class="form-control" value="Screenshot from 2021-02-02 11-25-01.png">
+            </div>
+            <button type="button" class="btn btn-primary btn-receive-profile-photo form-control">Receber foto</button>
         </div>
     </div>
 </div>
