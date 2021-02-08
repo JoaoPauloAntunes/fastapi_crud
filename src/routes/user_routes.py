@@ -1,6 +1,8 @@
 from fastapi import APIRouter, File, UploadFile
+from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
 from shutil import copyfileobj
+import os
 
 from ..database import schemas
 
@@ -122,12 +124,12 @@ def remove_user(email: str):
     }
 
 
-@user_router.post('/profile_picture')
+@user_router.post('/profile_picture/')
 def receive_profile_picture(profile_picture: UploadFile = File(...)):
-    file_path = f"data/{profile_picture.filename}"
+    profile_picture_path = f"data/{profile_picture.filename}"
 
     try:
-        with open(file_path, 'wb') as create_file:
+        with open(profile_picture_path, 'wb') as create_file:
             copyfileobj(profile_picture.file, create_file)
             is_created = True
     except:
@@ -139,6 +141,12 @@ def receive_profile_picture(profile_picture: UploadFile = File(...)):
                 "message": "profile picture uploaded" if is_created else "profile picture don't uploaded",
                 "file_name": profile_picture.filename,
                 "content_type": profile_picture.content_type,
-                "file_path": file_path,
+                "file_path": profile_picture_path,
             }
         }
+        
+
+@user_router.get("/profile_picture/{profile_picture_name}", response_class=FileResponse)
+def send_profile_picture(profile_picture_name: str):
+    profile_picture_path = f"data/{profile_picture_name}"
+    return FileResponse(path=profile_picture_path, media_type='application/octet-stream', filename=profile_picture_name)

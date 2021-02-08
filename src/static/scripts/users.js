@@ -231,7 +231,28 @@ $(function (event) {
         /* $.post("/users/profile_picture", formData).done(function (data) {
             console.log(data);
         }); */
-    })
+    });
+
+    $(".btn-receive-profile-picture").click(function (event) {
+        console.log("RECEIVE PROFILE PICTURE");
+        const profilePictureName = "Screenshot from 2021-02-02 11-27-59.png";
+    
+        fetch(`/users/profile_picture/${profilePictureName}`).then(function (response) {
+            return response.blob().then(function (blob) {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                
+                a.style.display = 'none';
+                a.href = url;
+                a.download = profilePictureName;            // the filename you want
+
+                document.body.appendChild(a);
+                a.click();
+
+                window.URL.revokeObjectURL(url);
+            });
+        }).catch(() => alert('Failed to download profile photo'));
+    });
 });
 
 // JQuery extension for using the put and delete methods
