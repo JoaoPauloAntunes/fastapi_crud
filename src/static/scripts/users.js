@@ -165,8 +165,8 @@ $(function (event) {
     $(".btn-delete").click(function (event) {
         console.log("DELETE");
 
-        const email = "laise@gmail.com";
-        // const email = "debora@gmail.com";
+        // const email = "laise@gmail.com";
+        const email = "debora@gmail.com";
 
         // work!
         $.delete(`/users/${email}`, false, function (response) {
@@ -174,15 +174,15 @@ $(function (event) {
         });
     });
 
-    $("#btn_send_profile_picture").click(function (event) {
-        const profilePicture = document.getElementById("profile_picture").files[0];
-        console.log(profilePicture);
+    $("#btn_send_profile_photo").click(function (event) {
+        const profilePhoto = document.getElementById("profile_photo").files[0];
+        console.log(profilePhoto);
 
         var formData = new FormData();
-        formData.append('profile_picture', profilePicture);
+        formData.append('profile_photo', profilePhoto);
 
         // work!
-        /* fetch("/users/profile_picture", {
+        /* fetch("/users/profile_photo", {
             method: 'POST',
             body: formData,
         }).then((response) => {
@@ -193,7 +193,7 @@ $(function (event) {
 
         // work!
         $.ajax({
-            url: "/users/profile_picture",  // Url to which the request is send
+            url: "/users/profile_photo/",   // Url to which the request is send
             type: "POST",                   // Type of request to be send, called as method
             data: formData,                 // Data sent to server, a set of key/value pairs (i.e. form fields and values)
             processData:false,              // To send DOMDocument or non processed data file it is set to false
@@ -209,42 +209,42 @@ $(function (event) {
         /* var xhr = new XMLHttpRequest();
 
         // Open
-        xhr.open("POST", "/users/profile_picture");
+        xhr.open("POST", "/users/profile_photo");
 
         // Set headers
         xhr.setRequestHeader("Cache-Control", "no-cache");
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xhr.setRequestHeader("Content-Type", "multipart/form-data");
-        xhr.setRequestHeader("X-File-Name", profilePicture.name);
-        xhr.setRequestHeader("X-File-Size", profilePicture.size);
-        xhr.setRequestHeader("X-File-Type", profilePicture.type);
+        xhr.setRequestHeader("X-File-Name", profilePhoto.name);
+        xhr.setRequestHeader("X-File-Size", profilePhoto.size);
+        xhr.setRequestHeader("X-File-Type", profilePhoto.type);
 
         // Send
         xhr.send(formData); */
 
         // doesn't work!
-       /*  $.post("/users/profile_picture", JSON.stringify(profilePicture)).done(function (data) {
+       /*  $.post("/users/profile_photo", JSON.stringify(profilePhoto)).done(function (data) {
             console.log(data);
         }); */
 
         // doesn't work!
-        /* $.post("/users/profile_picture", formData).done(function (data) {
+        /* $.post("/users/profile_photo", formData).done(function (data) {
             console.log(data);
         }); */
     });
 
-    $(".btn-receive-profile-picture").click(function (event) {
-        console.log("RECEIVE PROFILE PICTURE");
-        const profilePictureName = "Screenshot from 2021-02-02 11-27-59.png";
+    $(".btn-receive-profile-photo").click(function (event) {
+        console.log("RECEIVE profile photo");
+        const profilePhotoName = "Screenshot from 2021-02-02 11-27-59.png";
     
-        fetch(`/users/profile_picture/${profilePictureName}`).then(function (response) {
+        fetch(`/users/profile_photo/${profilePhotoName}`).then(function (response) {
             return response.blob().then(function (blob) {
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 
                 a.style.display = 'none';
                 a.href = url;
-                a.download = profilePictureName;            // the filename you want
+                a.download = profilePhotoName;            // the filename you want
 
                 document.body.appendChild(a);
                 a.click();

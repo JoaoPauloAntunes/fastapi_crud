@@ -124,13 +124,13 @@ def remove_user(email: str):
     }
 
 
-@user_router.post('/profile_picture/')
-def receive_profile_picture(profile_picture: UploadFile = File(...)):
-    profile_picture_path = f"data/{profile_picture.filename}"
+@user_router.post('/profile_photo/')
+def receive_profile_photo(profile_photo: UploadFile = File(...)):
+    profile_photo_path = f"data/{profile_photo.filename}"
 
     try:
-        with open(profile_picture_path, 'wb') as create_file:
-            copyfileobj(profile_picture.file, create_file)
+        with open(profile_photo_path, 'wb') as create_file:
+            copyfileobj(profile_photo.file, create_file)
             is_created = True
     except:
         is_created = False
@@ -138,15 +138,15 @@ def receive_profile_picture(profile_picture: UploadFile = File(...)):
         return {
             "status": is_created,
             "data": {
-                "message": "profile picture uploaded" if is_created else "profile picture don't uploaded",
-                "file_name": profile_picture.filename,
-                "content_type": profile_picture.content_type,
-                "file_path": profile_picture_path,
+                "message": "profile photo uploaded" if is_created else "profile photo don't uploaded",
+                "file_name": profile_photo.filename,
+                "content_type": profile_photo.content_type,
+                "file_path": profile_photo_path,
             }
         }
         
 
-@user_router.get("/profile_picture/{profile_picture_name}", response_class=FileResponse)
-def send_profile_picture(profile_picture_name: str):
-    profile_picture_path = f"data/{profile_picture_name}"
-    return FileResponse(path=profile_picture_path, media_type='application/octet-stream', filename=profile_picture_name)
+@user_router.get("/profile_photo/{profile_photo_name}", response_class=FileResponse)
+def send_profile_photo(profile_photo_name: str):
+    profile_photo_path = f"data/{profile_photo_name}"
+    return FileResponse(path=profile_photo_path, media_type='application/octet-stream', filename=profile_photo_name)
