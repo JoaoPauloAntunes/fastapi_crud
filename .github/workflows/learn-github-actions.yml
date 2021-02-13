@@ -20,3 +20,10 @@ jobs:
           import os
           print(os.environ['PATH'])
         shell: python
+  run-python-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: |
+          print("Hello, world!")
+        shell: python
