@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display the path
-      run: |
-        import os
-        print(os.environ['PATH'])
-      shell: python
+        run: |
+          import os
+          print(os.environ['PATH'])
+        shell: python
