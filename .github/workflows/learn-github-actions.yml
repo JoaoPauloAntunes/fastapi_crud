@@ -8,7 +8,8 @@ jobs:
       - uses: actions/setup-node@v1   # ação da comunidade pré-criada que instala o pacote do node no runner, dando acesso ao comando npm
       - run: npm install -g bats      # trabalho executa este comando no runner. Este comando instala o pacote de teste do software bats 
       - run: bats -v                  # executa comando bats com um parâmetro que produz a versão do software
-  run-hello-world:
+  print-hello-world:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World"
+  
