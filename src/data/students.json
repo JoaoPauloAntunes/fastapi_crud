@@ -1,0 +1,92 @@
+[
+ {
+   "id": 1,
+   "nome": "Agatha da Costa",
+   "endereço": "Via Cauã Rezende",
+   "bairro": "Paraíso",
+   "cidade": "da Mata",
+   "uf": "São Paulo",
+   "cep": "29093-532"
+ },
+ {
+   "id": 2,
+   "nome": "Benício das Neves",
+   "endereço": "Rua de da Paz, 86",
+   "bairro": "Capitão Eduardo",
+   "cidade": "Pereira de Rodrigues",
+   "uf": "Rio de Janeiro",
+   "cep": "83392-182"
+ },
+ {
+   "id": 3,
+   "nome": "Júlia da Paz",
+   "endereço": "Praia Moraes, 25",
+   "bairro": "Conjunto Taquaril",
+   "cidade": "Jesus de Goiás",
+   "uf": "Goiás",
+   "cep": "15319-202"
+ },
+ {
+   "id": 4,
+   "nome": "Dr. Pedro Lucas Peixoto",
+   "endereço": "Esplanada Davi Luiz Freitas, 4",
+   "bairro": "Virgínia",
+   "cidade": "Pires de Minas",
+   "uf": "Distrito Federal",
+   "cep": "24123-321"
+ },
+ {
+   "id": 5,
+   "nome": "Sophia Araújo",
+   "endereço": "Vila Beatriz Ramos, 125",
+   "bairro": "Chácara Leonina",
+   "cidade": "Lima",
+   "uf": "Minas Gerais",
+   "cep": "32024-590"
+ },
+ {
+   "id": 6,
+   "nome": "Esther Freitas",
+   "endereço": "Pátio Fogaça, 52",
+   "bairro": "Braúnas",
+   "cidade": "da Rocha do Campo",
+   "uf": "Amapá",
+   "cep": "43302-598"
+ },
+ {
+   "id": 7,
+   "nome": "Camila Rocha",
+   "endereço": "Fazenda Santos, 8",
+   "bairro": "Serra",
+   "cidade": "Correia das Flores",
+   "uf": "Santa Catarina",
+   "cep": "76917-907"
+ },
+ {
+   "id": 8,
+   "nome": "Ana Júlia Porto",
+   "endereço": "Lagoa Sarah Moraes, 58",
+   "bairro": "Monte São José",
+   "cidade": "Lopes",
+   "uf": "Minas Gerais",
+   "cep": "82636-495"
+ },
+ {
+   "id": 9,
+   "nome": "Pietra Campos",
+   "endereço": "Favela Natália Caldeira, 88",
+   "bairro": "Xodo-Marize",
+   "cidade": "Farias",
+   "uf": "Paraná",
+   "cep": "33447-453"
+ },
+ {
+   "id": 10,
+   "nome": "João Felipe Carvalho",
+   "endereço": "Lago Davi Sales, 60",
+   "bairro": "Renascença",
+   "cidade": "Cunha",
+   "uf": "Mato Grosso do Sul",
+   "cep": "56446-679"
+ }
+]
