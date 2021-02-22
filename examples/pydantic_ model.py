@@ -1,14 +1,14 @@
-from datatime import datatime
+from datetime import datetime
 from pydantic import BaseModel, validator
 
 
 class ValidatedOrder(BaseModel):
     value: float
-    order_date: datatime
+    order_date: datetime
 
     @validator("order_date")
-    def validate_order(cls, v: datatime, **kwargs) -> datatime:
-        if v > datatime.now():
+    def validate_order(cls, v: datetime, **kwargs) -> datetime:
+        if v > datetime.now():
             raise ValueError(
                 "A data do pedido não pode estar no futuro!"
             )
